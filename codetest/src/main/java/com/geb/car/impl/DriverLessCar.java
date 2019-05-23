@@ -37,14 +37,20 @@ public class DriverLessCar extends AbstractCar {
             }
         }
         switch ( ori ) {
-            case Direction.NORTH :
-            case Direction.SOUTH : {
+            case Direction.NORTH : {
                 pridictY += offset ;
                 break;
             }
-            case Direction.EAST :
-            case Direction.WEST : {
+            case Direction.SOUTH : {
+                pridictY -= offset ;
+                break;
+            }
+            case Direction.EAST : {
                 predictX += offset ;
+                break;
+            }
+            case Direction.WEST : {
+                predictX -= offset ;
                 break;
             }
             default: {}
@@ -59,20 +65,20 @@ public class DriverLessCar extends AbstractCar {
     @Override
     public void turn(String command) throws Exception{
         String ori = getOrientation() ;
-
+        String turnOri ;
         switch ( command ) {
             case Command.TURN_CLOCKWISE : {
-                setOrientation( Direction.getClockWiseOri(ori) );
+                turnOri = Direction.getClockWiseOri(ori) ;
                 break;
             }
             case Command.TURN_ANTICLOCKWISE : {
-                setOrientation( Direction.getAntiClockWiseOri(ori) );
+                turnOri = Direction.getAntiClockWiseOri(ori) ;
                 break;
             }
             default: {
                 throw new CommandNotFoundException(String.format( "command: %s", command)) ;
             }
         }
-
+        setOrientation(turnOri);
     }
 }
