@@ -30,6 +30,19 @@ public class DriverLessCarTest extends TestCase {
         }
     }
 
+    @Test
+    public void testForwardOutBoundary(){
+        DriverLessCar car = init() ;
+        try {
+            logger.info(car);
+            car.move(Command.MOVE_FORWARD);
+            car.move(Command.MOVE_FORWARD);
+            logger.info(car);
+        } catch (Exception e) {
+            logger.error(e);
+        }
+    }
+
 
 
     @Test
@@ -39,6 +52,17 @@ public class DriverLessCarTest extends TestCase {
             logger.info(car);
             car.move(Command.MOVE_FORWARD);
             car.move(Command.MOVE_BACKWARD);
+            logger.info(car);
+        } catch (Exception e) {
+            logger.error(e);
+        }
+    }
+
+    @Test
+    public void testBackwardOutBoundary() {
+        DriverLessCar car = init() ;
+        try {
+            logger.info(car);
             car.move(Command.MOVE_BACKWARD);
             logger.info(car);
         } catch (Exception e) {
@@ -52,6 +76,7 @@ public class DriverLessCarTest extends TestCase {
         try {
             logger.info(car);
             car.turn(Command.TURN_CLOCKWISE);
+            car.turn(Command.TURN_CLOCKWISE);
             logger.info(car);
         } catch (Exception e) {
             logger.error(e);
@@ -64,9 +89,38 @@ public class DriverLessCarTest extends TestCase {
         try {
             logger.info(car);
             car.turn(Command.TURN_ANTICLOCKWISE);
+            car.move(Command.TURN_ANTICLOCKWISE);
             logger.info(car);
         } catch (Exception e) {
             logger.error(e);
         }
     }
+
+    @Test
+    public void testTurnAndMove1() {
+        DriverLessCar car = init() ;
+        try {
+            logger.info(car);
+            car.turn(Command.TURN_CLOCKWISE);
+            car.move(Command.MOVE_FORWARD);
+            logger.info(car);
+        } catch (Exception e) {
+            logger.error(e);
+        }
+    }
+
+    @Test
+    public void testTurnAndMove2() {
+        DriverLessCar car = init() ;
+        try {
+            logger.info(car);
+            car.turn(Command.TURN_ANTICLOCKWISE);
+            car.move(Command.MOVE_BACKWARD);
+            logger.info(car);
+        } catch (Exception e) {
+            logger.error(e);
+        }
+    }
+
+
 }
